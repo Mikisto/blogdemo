@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Repositories
 {
-    internal interface IBlogRepository : IDisposable
+    public interface IBlogRepository : IDisposable
     {
         Task<IEnumerable<Blog>> GetBlogs();
 

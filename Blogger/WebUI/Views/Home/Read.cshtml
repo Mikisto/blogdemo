@@ -1,0 +1,44 @@
+﻿@model WebUI.Models.Blog.BlogViewModel
+
+@{
+    ViewBag.Title = "Read";
+}
+
+<div class="row blog">
+    <div class="row">
+        <div class="col-lg-10 col-md-10 col-sm-10">
+            <span class="blog-header">@Model.Topic</span>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 blog-header">
+            <i class="fa fa-thumbs-up"></i>
+            @Model.Likes
+        </div>
+    </div>
+    <div class="row author">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            @Model.Author
+            -
+            @Model.Date
+        </div>
+    </div>  
+    <div class="row">
+        <div class="col-lg-12 body-text">
+            @Model.Body
+        </div>        
+    </div>
+    
+        @foreach (var comment in Model.Comments)
+        {
+            <div class="row comment">
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    @comment.Author
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    @comment.Date
+                </div>
+                <div class="col-lg-12">
+                    @comment.Body
+                </div>
+            </div>
+        }            
+</div>  

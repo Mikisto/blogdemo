@@ -11,5 +11,12 @@ namespace DataTransferObjects
         public string Author { get; set; }
         public DateTime Date { get; set; }
         public string Body { get; set; }
+
+        public CommentDto(string author, DateTime date, string body)
+        {
+            Author = author;
+            Date = date;
+            Body = body;
+        }
     }
 }

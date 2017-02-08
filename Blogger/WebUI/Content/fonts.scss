@@ -1,0 +1,16 @@
+﻿@mixin header-font(){
+    font-size: 1.2em;
+    font-weight: 700;
+    vertical-align: middle;
+}
+
+@mixin massive-header(){
+    font-size: 2em;
+    font-weight: 900;
+    vertical-align: middle;
+}
+
+@mixin small-text(){
+    font-size: 0.9em;
+    font-style: italic;
+}

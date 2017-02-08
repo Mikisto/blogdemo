@@ -18,7 +18,7 @@ namespace Repositories
         }
 
         public async Task Add(Blog blog)
-        {
+        {            
             await Task.Run(() => _context.Blogs.Add(blog));
             await Save();
         }

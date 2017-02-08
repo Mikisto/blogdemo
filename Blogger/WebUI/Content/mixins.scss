@@ -1,0 +1,20 @@
+﻿@mixin rounded-corners($radius){
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+
+.fa-set{
+    .fa{
+        cursor: pointer;
+    }
+
+    .fa-thumbs-up{
+        color: $ok;
+    }
+
+    .fa-thumbs-down{
+        color: $no;
+    }
+}

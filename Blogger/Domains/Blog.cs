@@ -20,7 +20,7 @@ namespace Domains
             Likes = new List<Like>();
         }
 
-        public Blog(string author, string topic, string body) : base()
+        public Blog(string author, string topic, string body) : this()
         {
             Author = author;
             Date = DateTime.Now;

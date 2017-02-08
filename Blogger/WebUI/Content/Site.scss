@@ -1,0 +1,65 @@
+﻿@import 'colours';
+@import 'fonts';
+@import 'mixins';
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+
+    .body-content{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .dl-horizontal dt {
+        white-space: normal;
+    }
+
+    input,
+    select,
+    textarea {
+        max-width: 280px;
+    }
+
+    .blog-list-item{
+        background: $blog-background;
+        @include rounded-corners(5px);
+        padding: 10px;
+        margin-bottom: 10px;
+
+        &:first-of-type{
+            margin-top: 25px;
+        }
+
+        &:last-of-type{
+            margin-bottom: 0;
+        }
+
+        .blog-header{
+            @include header-font();
+        }
+
+        @extend .fa-set;
+    }
+
+    .blog{
+        margin-top: 25px;
+        background: $blog-background;
+        @include rounded-corners(5px);
+        padding: 10px;
+        
+        .blog-header{
+            @include massive-header();
+        }
+
+        @extend .fa-set;
+    
+        .author{
+            @include small-text();
+        }
+
+        .body-text{
+            margin-top: 5px;
+        }
+    }
+}

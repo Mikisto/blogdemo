@@ -1,30 +1,49 @@
-﻿using System;
+﻿using Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using DataTransferObjects;
+using WebUI.Models.Blog;
 
 namespace WebUI.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        #region Fields
+
+        private readonly IBlogService _blogService;
+
+        #endregion
+
+        #region Constructors
+
+        public HomeController(IBlogService blogService)
         {
-            return View();
+            _blogService = blogService;
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
+        #endregion
+
+        #region Public Methods
+
+        public async Task<ActionResult> Index()
+        {
+            var blogs = await _blogService.GetBlogList();
+            var viewModel = new BlogListViewModel(blogs);
+            return View(viewModel);
         }
 
-        public ActionResult Contact()
+        public async Task<ActionResult> Read(int id)
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            var blog = await _blogService.FindBlog(id, Guid.NewGuid());
+            var viewModel = new BlogViewModel(blog);
+            return View(viewModel);
         }
+
+        #endregion
     }
 }
