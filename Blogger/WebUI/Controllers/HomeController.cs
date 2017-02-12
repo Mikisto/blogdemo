@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using DataTransferObjects;
 using WebUI.Models.Blog;
+using RequestObjects;
 
 namespace WebUI.Controllers
 {
@@ -42,6 +43,22 @@ namespace WebUI.Controllers
             var blog = await _blogService.FindBlog(id, Guid.NewGuid());
             var viewModel = new BlogViewModel(blog);
             return View(viewModel);
+        }
+
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddComment(AddCommentViewModel vm)
+        {
+            if (!ModelState.IsValid)
+                throw new Exception("Don't be daft, fill in the comment");
+
+            var user = User?.Identity?.Name;
+            var request = new AddCommentRequest(vm.Id, user, vm.Comment);
+
+            await _blogService.AddComment(request);
+
+            var model = new CommentViewModel(user, DateTime.Now, vm.Comment);
+            return PartialView(model);
         }
 
         #endregion

@@ -26,5 +26,10 @@ namespace DataTransferObjects
             Comments = comments;
             Likes = likes;
         }
+
+        public BlogDto()
+        {
+
+        }
     }
 }

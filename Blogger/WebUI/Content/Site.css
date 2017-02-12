@@ -16,8 +16,7 @@ body {
   body .dl-horizontal dt {
     white-space: normal; }
   body input,
-  body select,
-  body textarea {
+  body select {
     max-width: 280px; }
   body .blog-list-item {
     background: #fffff5;
@@ -52,4 +51,11 @@ body {
       font-style: italic; }
     body .blog .body-text {
       margin-top: 5px; }
+    body .blog .comment-box {
+      margin-top: 25px; }
+      body .blog .comment-box textarea {
+        width: 100%;
+        height: 75px;
+        box-sizing: border-box;
+        margin-bottom: 15px; }
 

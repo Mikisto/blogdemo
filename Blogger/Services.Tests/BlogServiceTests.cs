@@ -62,7 +62,7 @@ namespace Services.Tests
             var blogList = await _service.GetBlogList();
 
             Assert.AreEqual(1, blogList.Count());
-            Assert.IsInstanceOf<BlogDetailsDto>(blogList.First());
+            Assert.IsInstanceOf<BlogDto>(blogList.First());
 
             _repositoryMock.Verify(p => p.GetBlogs(), Times.Once);
         }

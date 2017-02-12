@@ -6,7 +6,7 @@ namespace DataAccessLayer
 {
     public class BlogContext : DbContext
     {
-        public DbSet<Blog> Blogs { get; set; }
+        public virtual DbSet<Blog> Blogs { get; set; }
 
         public BlogContext() : base("blogContext")
         {

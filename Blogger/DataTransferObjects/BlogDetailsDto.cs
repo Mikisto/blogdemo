@@ -18,5 +18,9 @@ namespace DataTransferObjects
             Topic = topic;
             Likes = likes;
         }
+
+        public BlogDetailsDto()
+        {
+        }
     }
 }

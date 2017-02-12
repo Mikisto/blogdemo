@@ -25,6 +25,13 @@ namespace WebUI.Models.Blog
             Body = dto.Body;
         }
 
+        public CommentViewModel(string author, DateTime date, string body)
+        {
+            Author = author;
+            Date = date;
+            Body = body;
+        }
+
         #endregion
 
     }

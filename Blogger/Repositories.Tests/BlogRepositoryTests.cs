@@ -2,6 +2,7 @@
 using Domains;
 using Moq;
 using NUnit.Framework;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,10 +20,16 @@ namespace Repositories.Tests
         [SetUp]
         public void Setup()
         {
-            _mockDbSet = new Mock<DbSet<Blog>>();
+            var blogs = new List<Blog>().AsQueryable();
 
-            _mockContext = new Mock<BlogContext>();
-            _mockContext.Setup(p => p.Blogs).Returns(_mockDbSet.Object);
+            _mockDbSet = new Mock<DbSet<Blog>>();
+            _mockDbSet.As<IQueryable<Blog>>().Setup(m => m.Provider).Returns(blogs.Provider);
+            _mockDbSet.As<IQueryable<Blog>>().Setup(m => m.Expression).Returns(blogs.Expression);
+            _mockDbSet.As<IQueryable<Blog>>().Setup(m => m.ElementType).Returns(blogs.ElementType);
+            _mockDbSet.As<IQueryable<Blog>>().Setup(m => m.GetEnumerator()).Returns(blogs.GetEnumerator());
+
+            _mockContext = new Mock<BlogContext>();            
+            _mockContext.Setup(p => p.Blogs).Returns(_mockDbSet.Object);            
 
             _repository = new BlogRepository(_mockContext.Object);
         }
@@ -31,8 +38,7 @@ namespace Repositories.Tests
         public async Task GetBlogsTest()
         {
             var blogs = await _repository.GetBlogs();
-
-            _mockDbSet.Verify(p => p.ToList(), Times.Once);
+                        
             _mockContext.Verify(p => p.SaveChangesAsync(), Times.Never);
         }
 
@@ -41,7 +47,7 @@ namespace Repositories.Tests
         {
             var blog = await _repository.Find(0);
 
-            _mockDbSet.Verify(p => p.Find(It.IsAny<int>()), Times.Once);
+            _mockDbSet.Verify(p => p.FindAsync(It.IsAny<int>()), Times.Once);
             _mockContext.Verify(p => p.SaveChangesAsync(), Times.Never);
         }
 

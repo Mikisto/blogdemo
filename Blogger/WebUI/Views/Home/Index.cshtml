@@ -9,22 +9,21 @@
     <div class="row blog-list-item">
         <div class="container">
             <div class="row">
-                <div class="col-lg-10 col-md-10 col-sm-12">
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-9">
                     <span class="blog-header">@blog.Topic</span>
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
                     <i class="fa fa-thumbs-up"></i>
                     @blog.Likes
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-2 col-md-2 col-sm-4">
+                <div class="col-lg-10 col-md-10 col-sm-9 col-xs-9">
                     @blog.Author
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
+                    -
                     @blog.Date
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-2 pull-right">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 pull-right">
                     @Html.ActionLink("Read", "Read", new { id = blog.Id })
                 </div>
             </div>
